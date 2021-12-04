@@ -27,6 +27,11 @@ class UserStorage {
             
         })
     }
+    async getUserWithRole(id, password){
+        const user = await this.loginUser(id, password);
+        const role = await this.getRoles(user);
+        return role;
+    }
 }
 
 const userStorage = new UserStorage();
@@ -38,5 +43,10 @@ userStorage.loginUser(id, password)
 .then(userStorage.getRoles)
 .then(ret => console.log(ret))
 .catch(console.log);
+
+userStorage
+.getUserWithRole(id, password)
+.catch(console.log)
+.then(console.log)
 
 
